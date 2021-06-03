@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardBackgroundColor="@color/secondaryColor"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="4dp"
+    app:cardUseCompatPadding="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/large_margin"
+        android:layout_marginVertical="@dimen/medium_margin"
+        android:orientation="vertical">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            tools:text="Android App" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/description"
+            android:layout_marginTop="@dimen/medium_margin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/primaryTextColor"
+            tools:text="Some kind of description" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/language"
+            android:layout_width="wrap_content"
+            android:layout_marginTop="@dimen/small_margin"
+            android:layout_height="wrap_content"
+            android:textColor="@color/primaryTextColor"
+            tools:text="Kotlin" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/openIssues"
+            android:layout_width="wrap_content"
+            android:layout_marginTop="@dimen/small_margin"
+            android:layout_height="wrap_content"
+            android:textColor="@color/redTextColor"
+            tools:text="Number of open issues: 4" />
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>

@@ -5,18 +5,20 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.RequestManager
+import com.marko.githubapp.R
 import com.marko.githubapp.databinding.UserFragmentBinding
 import com.marko.githubapp.domain.User
 import com.marko.githubapp.util.BaseFragment
 import com.marko.githubapp.util.DataState
+import com.marko.githubapp.util.handleVisibilityByInput
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class UserFragment: BaseFragment() {
+class UserFragment : BaseFragment() {
 
     @Inject
     lateinit var glide: RequestManager
@@ -39,31 +41,40 @@ class UserFragment: BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         initObserver()
+        initReposClickListener()
+    }
+
+    private fun initReposClickListener() {
+        binding.repoButton.setOnClickListener {
+            findNavController().navigate(R.id.action_userFragment_to_reposFragment)
+        }
     }
 
     private fun initObserver() {
         viewModel.userLiveData.observe(viewLifecycleOwner) { dataState ->
-            when(dataState) {
-                is DataState.Error -> {
-                    binding.loader.isVisible = false
-                    showErrorDialog()
-                }
+            when (dataState) {
+                is DataState.Error -> handleError()
                 DataState.Loading -> binding.loader.isVisible = true
-                is DataState.Success -> {
-                    binding.loader.isVisible = false
-                    updateUi(dataState.data)
-                }
+                is DataState.Success -> updateUi(dataState.data)
             }
         }
     }
 
+    private fun handleError() {
+        binding.loader.isVisible = false
+        showErrorDialog()
+    }
+
     private fun updateUi(user: User) {
-        binding.userName.text = user.name
-        binding.userBio.text = user.bio
-        binding.followersCount.text = user.followers.toString()
-        binding.followingCount.text = user.following.toString()
-        binding.userCompany.text = user.company
-        glide.load(user.imageUrl).into(binding.profileImage)
+        with(binding) {
+            loader.isVisible = false
+            userName.text = user.name
+            userBio.handleVisibilityByInput(user.bio)
+            userCompany.handleVisibilityByInput(user.company)
+            followersCount.text = user.followers.toString()
+            followingCount.text = user.following.toString()
+            glide.load(user.imageUrl).into(profileImage)
+        }
     }
 
     override fun onDestroyView() {

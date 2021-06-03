@@ -12,5 +12,6 @@
     <color name="secondaryColor">#363458</color>
     <color name="secondaryTextColor">#8A88A8</color>
     <color name="primaryTextColor">#B2B1BF</color>
+    <color name="redTextColor">#DA7A7A</color>
     <color name="surface">#EFF1F3</color>
 </resources>

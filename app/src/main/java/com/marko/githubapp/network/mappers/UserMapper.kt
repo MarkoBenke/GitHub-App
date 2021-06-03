@@ -11,7 +11,6 @@ class UserMapper @Inject constructor() : DomainMapper<UserDto, User> {
         name = dto.name,
         imageUrl = dto.imageUrl,
         company = dto.company,
-        location = dto.location,
         bio = dto.bio,
         followers = dto.followers,
         following = dto.following
@@ -21,7 +20,6 @@ class UserMapper @Inject constructor() : DomainMapper<UserDto, User> {
         name = domain.name,
         imageUrl = domain.imageUrl,
         company = domain.company,
-        location = domain.location,
         bio = domain.bio,
         followers = domain.followers,
         following = domain.following

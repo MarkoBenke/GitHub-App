@@ -3,8 +3,9 @@ package com.marko.githubapp.network.dto
 import com.google.gson.annotations.SerializedName
 
 data class RepoDto(
+    val id: Int,
     val name: String,
-    val description: String,
+    val description: String?,
     @SerializedName("open_issues_count")
     val openIssuesCount: Int,
     val language: String?

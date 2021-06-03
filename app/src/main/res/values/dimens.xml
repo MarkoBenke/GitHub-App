@@ -7,4 +7,5 @@
     <dimen name="medium_padding">8dp</dimen>
     <dimen name="progress_bar_size">50dp</dimen>
     <dimen name="small_padding">4dp</dimen>
+    <dimen name="small_margin">4dp</dimen>
 </resources>
