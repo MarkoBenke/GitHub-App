@@ -20,8 +20,8 @@ class DefaultGitHubReposRepository constructor(
                 val response = repoService.fetchUserRepos()
 
                 if (response.isSuccessful) {
-                    response.body()?.let {
-                        emit(DataState.Success(repoMapper.mapFromDtoList(it)))
+                    response.body()?.let { reposResult ->
+                        emit(DataState.Success(repoMapper.mapFromDtoList(reposResult)))
                     }
                 } else {
                     emit(DataState.Error())

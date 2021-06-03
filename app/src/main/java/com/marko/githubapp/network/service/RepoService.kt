@@ -7,6 +7,6 @@ import retrofit2.http.GET
 
 interface RepoService {
 
-    @GET(NetworkUrl.USER_REPOS)
+    @GET(NetworkUrl.GET_USER_REPOS)
     suspend fun fetchUserRepos(): Response<List<RepoDto>>
 }
