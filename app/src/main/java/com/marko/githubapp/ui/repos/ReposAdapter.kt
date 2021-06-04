@@ -40,6 +40,18 @@ class ReposAdapter @Inject constructor(
             openIssues.text =
                 context.getString(R.string.open_issues_count, currentRepo.openIssuesCount)
         }
+
+        holder.itemView.setOnClickListener {
+            onItemClickListener?.let { click ->
+                click(currentRepo)
+            }
+        }
+    }
+
+    var onItemClickListener: ((Repo) -> Unit)? = null
+
+    fun setItemClickListener(listener: ((Repo) -> Unit)?) {
+        onItemClickListener = listener
     }
 }
 

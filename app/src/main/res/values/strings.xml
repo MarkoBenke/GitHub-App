@@ -7,4 +7,6 @@
     <string name="following">Following</string>
     <string name="open_issues_count">Open issues: %1s</string>
     <string name="check_repos">Check Repos</string>
+    <string name="sha">Sha: %1s</string>
+    <string name="comments_number">Number of comments: %1s</string>
 </resources>

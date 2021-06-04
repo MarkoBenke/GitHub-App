@@ -4,6 +4,7 @@ import com.marko.githubapp.domain.commit.Commit
 import com.marko.githubapp.domain.commit.CommitData
 import com.marko.githubapp.network.dto.commit.CommitDto
 import com.marko.githubapp.util.DomainMapper
+import com.marko.githubapp.util.parseDate
 import javax.inject.Inject
 
 class CommitsMapper @Inject constructor() : DomainMapper<CommitDto, Commit> {
@@ -13,9 +14,9 @@ class CommitsMapper @Inject constructor() : DomainMapper<CommitDto, Commit> {
         commitUrl = dto.commitUrl,
         commitData = CommitData(
             authorName = dto.commitData.author.name,
-            commitDate = dto.commitData.author.date,
+            commitDate = parseDate(dto.commitData.author.date),
             message = dto.commitData.message,
-            commentCount = dto.commitData.commentCount,
+            commentCount = dto.commitData.commentCount.toString(),
             isVerified = dto.commitData.verification.isVerified
         )
     )

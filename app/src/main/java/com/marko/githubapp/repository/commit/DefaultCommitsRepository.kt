@@ -6,8 +6,9 @@ import com.marko.githubapp.network.service.CommitsService
 import com.marko.githubapp.util.DataState
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+import javax.inject.Inject
 
-class DefaultCommitsRepository constructor(
+class DefaultCommitsRepository @Inject constructor(
     private val commitsService: CommitsService,
     private val commitsMapper: CommitsMapper
 ): CommitsRepository {

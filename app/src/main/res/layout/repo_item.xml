@@ -46,7 +46,7 @@
             android:layout_width="wrap_content"
             android:layout_marginTop="@dimen/small_margin"
             android:layout_height="wrap_content"
-            android:textColor="@color/redTextColor"
+            android:textColor="@color/redColor"
             tools:text="Number of open issues: 4" />
     </LinearLayout>
 </com.google.android.material.card.MaterialCardView>

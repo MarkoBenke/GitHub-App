@@ -14,5 +14,17 @@
     <fragment
         android:id="@+id/reposFragment"
         android:name="com.marko.githubapp.ui.repos.ReposFragment"
-        android:label="ReposFragment" />
+        android:label="ReposFragment" >
+        <action
+            android:id="@+id/action_reposFragment_to_commitsFragment"
+            app:destination="@id/commitsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/commitsFragment"
+        android:name="com.marko.githubapp.ui.commits.CommitsFragment"
+        android:label="CommitsFragment" >
+        <argument
+            android:name="repo"
+            app:argType="com.marko.githubapp.domain.Repo" />
+    </fragment>
 </navigation>

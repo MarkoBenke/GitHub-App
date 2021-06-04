@@ -2,6 +2,7 @@ package com.marko.githubapp.di
 
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
+import com.marko.githubapp.network.service.CommitsService
 import com.marko.githubapp.network.service.RepoService
 import com.marko.githubapp.network.service.UserService
 import com.marko.githubapp.network.util.NetworkUrl.BASE_URL
@@ -37,4 +38,9 @@ object NetworkModule {
     @Singleton
     fun provideRepoService(retrofitBuilder: Retrofit.Builder): RepoService =
         retrofitBuilder.build().create(RepoService::class.java)
+
+    @Provides
+    @Singleton
+    fun provideCommitsService(retrofitBuilder: Retrofit.Builder): CommitsService =
+        retrofitBuilder.build().create(CommitsService::class.java)
 }

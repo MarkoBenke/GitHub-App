@@ -1,38 +1,40 @@
-package com.marko.githubapp.ui.repos
+package com.marko.githubapp.ui.commits
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
-import com.marko.githubapp.R
-import com.marko.githubapp.databinding.ReposFragmentBinding
+import com.marko.githubapp.databinding.CommitsFragmentBinding
 import com.marko.githubapp.domain.Repo
+import com.marko.githubapp.domain.commit.Commit
+import com.marko.githubapp.ui.repos.ReposFragment
 import com.marko.githubapp.util.BaseFragment
 import com.marko.githubapp.util.DataState
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class ReposFragment : BaseFragment() {
+class CommitsFragment : BaseFragment() {
 
     @Inject
-    lateinit var reposAdapter: ReposAdapter
+    lateinit var commitsAdapter: CommitsAdapter
 
-    private var _binding: ReposFragmentBinding? = null
+    private var _binding: CommitsFragmentBinding? = null
     private val binding get() = _binding!!
 
-    private val viewModel: ReposViewModel by viewModels()
+    private val viewModel: CommitsViewModel by viewModels()
+    private lateinit var repo: Repo
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = ReposFragmentBinding.inflate(inflater, container, false)
+        _binding = CommitsFragmentBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -44,10 +46,10 @@ class ReposFragment : BaseFragment() {
     }
 
     private fun initObserver() {
-        viewModel.reposLiveData.observe(viewLifecycleOwner) { dataState ->
+        viewModel.commitsLiveData.observe(viewLifecycleOwner) { dataState ->
             when (dataState) {
-                DataState.Loading -> binding.loader.isVisible = true
                 is DataState.Error -> handleError()
+                DataState.Loading -> binding.loader.isVisible = true
                 is DataState.Success -> updateUi(dataState.data)
             }
         }
@@ -58,28 +60,27 @@ class ReposFragment : BaseFragment() {
         showErrorDialog()
     }
 
-    private fun updateUi(repos: List<Repo>) {
+    private fun updateUi(commits: List<Commit>) {
         binding.loader.isVisible = false
-        reposAdapter.submitList(repos)
+        commitsAdapter.submitList(commits)
     }
 
     private fun initUi() {
-        binding.reposRecView.adapter = reposAdapter
+        repo = requireArguments().getParcelable(ReposFragment.REPO_KEY)!!
+        binding.repoName.text = repo.name
+        binding.commitsRecView.adapter = commitsAdapter
+        viewModel.fetchCommitsForRepo(repo.name)
 
-        reposAdapter.setItemClickListener { repo ->
-            val bundle = bundleOf(
-                REPO_KEY to repo
-            )
-            findNavController().navigate(R.id.action_reposFragment_to_commitsFragment, bundle)
+        commitsAdapter.setCommitUrlClickListener { commitUrl ->
+            openUrl(commitUrl)
         }
     }
+
+    private fun openUrl(commitUrl: String) =
+        startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(commitUrl)))
 
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
-    }
-
-    companion object {
-        const val REPO_KEY = "repo"
     }
 }

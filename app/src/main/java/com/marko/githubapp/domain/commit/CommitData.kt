@@ -4,6 +4,6 @@ data class CommitData(
     val authorName: String,
     val commitDate: String,
     val message: String?,
-    val commentCount: Int,
+    val commentCount: String,
     val isVerified: Boolean,
 )
