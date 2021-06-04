@@ -38,6 +38,16 @@ android {
     }
 }
 
+android.sourceSets {
+    test {
+        java.srcDirs += "$projectDir/src/testShared"
+    }
+
+    androidTest {
+        java.srcDirs += "$projectDir/src/testShared"
+    }
+}
+
 dependencies {
     def hilt_version = "2.35.1"
     def glide_version = "4.12.0"
