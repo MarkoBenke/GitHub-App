@@ -7,6 +7,10 @@ import com.marko.githubapp.util.DomainMapper
 import com.marko.githubapp.util.parseDate
 import javax.inject.Inject
 
+/**
+ * Class for mapping commits models. It converts Commit object from network (CommitDto) to Domain
+ * object (Commit) and vice versa.
+ */
 class CommitsMapper @Inject constructor() : DomainMapper<CommitDto, Commit> {
 
     override fun mapFromDto(dto: CommitDto) = Commit(

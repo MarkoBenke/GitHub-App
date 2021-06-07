@@ -12,6 +12,11 @@ import com.marko.githubapp.domain.commit.Commit
 import dagger.hilt.android.qualifiers.ActivityContext
 import javax.inject.Inject
 
+/**
+ * Adapter class for list of commits
+ *
+ * @param context context
+ */
 class CommitsAdapter @Inject constructor(
     @ActivityContext val context: Context,
 ) : ListAdapter<Commit, CommitsAdapter.CommitsViewHolder>(CommitsDiffCallback()) {

@@ -5,6 +5,10 @@ import com.marko.githubapp.network.dto.UserDto
 import com.marko.githubapp.util.DomainMapper
 import javax.inject.Inject
 
+/**
+ * Class for mapping user models. It converts User object from network (UserDto) to Domain
+ * object (User) and vice versa.
+ */
 class UserMapper @Inject constructor() : DomainMapper<UserDto, User> {
 
     override fun mapFromDto(dto: UserDto) = User(

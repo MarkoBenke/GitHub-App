@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.marko.githubapp.domain.Repo
 import com.marko.githubapp.repository.repos.GitHubReposRepository
+import com.marko.githubapp.util.Constants.USERNAME
 import com.marko.githubapp.util.DataState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -27,7 +28,7 @@ class ReposViewModel @Inject constructor(
 
     private fun fetchUserRepos() {
         viewModelScope.launch(Dispatchers.IO) {
-            reposRepository.fetchUserRepositories("MarkoBenke").collect {
+            reposRepository.fetchUserRepositories(USERNAME).collect {
                 _reposLiveData.postValue(it)
             }
         }

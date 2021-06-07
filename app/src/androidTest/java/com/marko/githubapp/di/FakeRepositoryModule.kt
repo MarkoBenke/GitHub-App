@@ -12,6 +12,9 @@ import shared.repository.FakeGitHubReposRepository
 import shared.repository.FakeUserRepository
 import javax.inject.Singleton
 
+/**
+ * Fake repository module class. It is used to replace RepositoryModule in tests.
+ */
 @Module
 @TestInstallIn(
     components = [SingletonComponent::class],

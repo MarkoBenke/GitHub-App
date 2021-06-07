@@ -5,6 +5,10 @@ import com.marko.githubapp.network.dto.RepoDto
 import com.marko.githubapp.util.DomainMapper
 import javax.inject.Inject
 
+/**
+ * Class for mapping Repository models. It converts Repo object from network (RepoDto) to Domain
+ * object (Repo) and vice versa.
+ */
 class RepoMapper @Inject constructor() : DomainMapper<RepoDto, Repo> {
 
     override fun mapFromDto(dto: RepoDto) = Repo(

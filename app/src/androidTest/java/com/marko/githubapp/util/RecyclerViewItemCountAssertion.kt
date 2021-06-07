@@ -7,8 +7,7 @@ import androidx.test.espresso.ViewAssertion
 import com.google.common.truth.Truth.assertThat
 
 /**
- * View assertion used for checking number of items in
- * a RecyclerView
+ * View assertion used for checking number of items in a RecyclerView
  */
 class RecyclerViewItemCountAssertion(private val expectedCount: Int) : ViewAssertion {
 

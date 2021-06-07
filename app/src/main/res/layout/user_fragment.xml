@@ -135,7 +135,8 @@
         android:layout_height="@dimen/progress_bar_size"
         android:layout_centerInParent="true"
         android:background="@drawable/progress_bar_circle"
-        android:elevation="16dp"
+        android:elevation="@dimen/progress_bar_elevation"
+        android:indeterminateTint="@color/redColor"
         android:indeterminate="true"
         android:padding="@dimen/small_padding"
         android:visibility="gone" />

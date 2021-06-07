@@ -7,17 +7,28 @@ import com.marko.githubapp.util.DataState
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
+/**
+ * Implementation class of GitHubReposRepository interface.
+ *
+ * @param repoService repo service
+ * @param repoMapper repo mapper
+ */
 class DefaultGitHubReposRepository constructor(
     private val repoService: RepoService,
     private val repoMapper: RepoMapper
 ) : GitHubReposRepository {
 
+    /**
+     * It fetches all the public repositories of desired GitHub user.
+     *
+     * @param username GitHub username
+     */
     override suspend fun fetchUserRepositories(username: String): Flow<DataState<List<Repo>>> =
         flow {
             emit(DataState.Loading)
 
             try {
-                val response = repoService.fetchUserRepos()
+                val response = repoService.fetchUserRepos(username)
 
                 if (response.isSuccessful) {
                     response.body()?.let { reposResult ->

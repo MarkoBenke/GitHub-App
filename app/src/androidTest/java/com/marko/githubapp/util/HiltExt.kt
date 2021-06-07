@@ -15,6 +15,11 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 const val THEME_EXTRAS_BUNDLE_KEY =
     "androidx.fragment.app.testing.FragmentScenario.EmptyFragmentActivity.THEME_EXTRAS_BUNDLE_KEY"
 
+/**
+ * It launches a fragment in HiltContainer, which means that fragment is launched
+ * in HiltTestActivity, activity that has @AndroidEntryPoint annotation.
+ * This way we can test our fragments in isolation.
+ */
 @ExperimentalCoroutinesApi
 inline fun <reified T : Fragment> launchFragmentInHiltContainer(
     fragmentArgs: Bundle? = null,

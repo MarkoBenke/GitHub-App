@@ -8,6 +8,9 @@ import kotlinx.coroutines.flow.flow
 import shared.util.DataGenerator
 import javax.inject.Inject
 
+/**
+ * Class that is used to replace DefaultUserRepository class in tests.
+ */
 class FakeUserRepository @Inject constructor(private val shouldReturnError: Boolean) :
     UserRepository {
 

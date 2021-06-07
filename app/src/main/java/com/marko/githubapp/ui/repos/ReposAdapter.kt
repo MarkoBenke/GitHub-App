@@ -13,6 +13,11 @@ import com.marko.githubapp.util.handleVisibilityByInput
 import dagger.hilt.android.qualifiers.ActivityContext
 import javax.inject.Inject
 
+/**
+ * Adapter class for list of GitHub repos
+ *
+ * @param context context
+ */
 class ReposAdapter @Inject constructor(
     @ActivityContext val context: Context,
 ) : ListAdapter<Repo, ReposAdapter.ReposViewHolder>(RepoDiffCallback()) {
