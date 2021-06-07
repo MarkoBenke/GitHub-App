@@ -7,9 +7,9 @@ import com.marko.githubapp.util.MainCoroutineRule
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.junit.Rule
 import org.junit.Test
-import repository.FakeGitHubReposRepository
-import util.DataGenerator
-import util.getOrAwaitValueTest
+import shared.repository.FakeGitHubReposRepository
+import shared.util.DataGenerator
+import shared.util.getOrAwaitValueTest
 
 @ExperimentalCoroutinesApi
 class ReposViewModelTest {
@@ -24,7 +24,7 @@ class ReposViewModelTest {
 
     @Test
     fun `fetch repos, returns success`() {
-        viewModel = ReposViewModel(FakeGitHubReposRepository())
+        viewModel = ReposViewModel(FakeGitHubReposRepository(shouldReturnError = false))
 
         val result = viewModel.reposLiveData.getOrAwaitValueTest()
         assertThat(result).isEqualTo(DataState.Success(DataGenerator.repos))

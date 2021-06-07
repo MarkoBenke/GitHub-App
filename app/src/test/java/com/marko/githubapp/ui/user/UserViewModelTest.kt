@@ -2,15 +2,14 @@ package com.marko.githubapp.ui.user
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.google.common.truth.Truth.assertThat
-import com.marko.githubapp.ui.user.UserViewModel
 import com.marko.githubapp.util.DataState
 import com.marko.githubapp.util.MainCoroutineRule
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.junit.Rule
 import org.junit.Test
-import repository.FakeUserRepository
-import util.DataGenerator
-import util.getOrAwaitValueTest
+import shared.repository.FakeUserRepository
+import shared.util.DataGenerator
+import shared.util.getOrAwaitValueTest
 
 @ExperimentalCoroutinesApi
 class UserViewModelTest {
@@ -25,7 +24,7 @@ class UserViewModelTest {
 
     @Test
     fun `fetch user, returns success`() {
-        viewModel = UserViewModel(FakeUserRepository())
+        viewModel = UserViewModel(FakeUserRepository(shouldReturnError = false))
 
         val result = viewModel.userLiveData.getOrAwaitValueTest()
         assertThat(result).isEqualTo(DataState.Success(DataGenerator.user))

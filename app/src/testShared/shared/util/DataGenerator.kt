@@ -1,4 +1,4 @@
-package util
+package shared.util
 
 import com.marko.githubapp.domain.Repo
 import com.marko.githubapp.domain.User
@@ -50,7 +50,7 @@ object DataGenerator {
         add(
             Commit(
                 sha = "asd",
-                commitUrl = "url",
+                commitUrl = "https://www.google.rs",
                 commitData = CommitData(
                     authorName = "Marko",
                     commitDate = "30.01.2520",

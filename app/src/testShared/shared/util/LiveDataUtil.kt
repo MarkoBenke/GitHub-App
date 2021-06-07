@@ -1,4 +1,4 @@
-package util
+package shared.util
 
 import androidx.annotation.VisibleForTesting
 import androidx.lifecycle.LiveData

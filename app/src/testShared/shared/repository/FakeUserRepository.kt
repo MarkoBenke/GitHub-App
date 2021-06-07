@@ -1,13 +1,15 @@
-package repository
+package shared.repository
 
 import com.marko.githubapp.domain.User
 import com.marko.githubapp.repository.user.UserRepository
 import com.marko.githubapp.util.DataState
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
-import util.DataGenerator
+import shared.util.DataGenerator
+import javax.inject.Inject
 
-class FakeUserRepository(private val shouldReturnError: Boolean = false): UserRepository {
+class FakeUserRepository @Inject constructor(private val shouldReturnError: Boolean) :
+    UserRepository {
 
     override suspend fun fetchUser(username: String): Flow<DataState<User>> = flow {
         if (shouldReturnError) {
